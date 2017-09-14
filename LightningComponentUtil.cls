@@ -1,9 +1,8 @@
-public class with sharing LightningComponentUtil{
+public with sharing class LightningComponentUtil{
 	/*
 	 * A collection of generic functions regularly used across Lightning Components
 	 */
 
-	//@AuraEnabled
 	public static Map<String,Boolean> checkFieldAccess(Id currentUser, String objectType, Set<String> fieldNameSet){
 		/* Lightning Components do not check field level security before displaying record values.
 		 * This function takes an object type and a set of fields for that object.
@@ -23,7 +22,6 @@ public class with sharing LightningComponentUtil{
 	
 	}
 	
-	//@AuraEnabled	
 	public static String buildQuery(Id currentUser, String objectType, Set<String> fieldNameSet){
 		/* Lightning Components do not check field level security before displaying record values.
 		 * This function takes an object type and a set of fields for that object.
