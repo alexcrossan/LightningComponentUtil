@@ -3,7 +3,7 @@ public with sharing class LightningComponentUtil{
 	 * A collection of generic functions regularly used across Lightning Components
 	 */
 
-	public static Map<String,Boolean> checkFieldAccess(Id currentUser, String objectType, Set<String> fieldNameSet){
+	public static Map<String,Boolean> checkFieldAccess(String objectType, Set<String> fieldNameSet){
 		/* Lightning Components do not check field level security before displaying record values.
 		 * This function takes an object type and a set of fields for that object.
 		 * Returns a map indicating the fields accessibility for the current user.
@@ -22,7 +22,7 @@ public with sharing class LightningComponentUtil{
 	
 	}
 	
-	public static String buildQuery(Id currentUser, String objectType, Set<String> fieldNameSet){
+	public static String buildQuery(String objectType, Set<String> fieldNameSet){
 		/* Lightning Components do not check field level security before displaying record values.
 		 * This function takes an object type and a set of fields for that object.
 		 * Returns a SOQL query that only queries fields the user has access to.
