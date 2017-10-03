@@ -8,10 +8,10 @@ public with sharing class LightningComponentUtil{
 		 * This function takes an object type and a set of fields for that object.
 		 * Returns a map indicating the fields accessibility for the current user.
 		 */
-        Schema.DescribeSobjectResult describeObject = Schema.describeSObjects(new String[]{objectType})[0];
+        	Schema.DescribeSobjectResult describeObject = Schema.describeSObjects(new String[]{objectType})[0];
 		Map<String,Schema.SObjectField> fieldDescribeTokens = describeObject.fields.getMap();
 		
-        Map<String,Boolean> fieldAccess = new Map<String,Boolean>();
+        	Map<String,Boolean> fieldAccess = new Map<String,Boolean>();
 		for(String fieldName : fieldNameSet){
 			Boolean access = fieldDescribeTokens.get(fieldName).getDescribe().isAccessible();
 			fieldAccess.put(fieldName,access);
@@ -27,7 +27,7 @@ public with sharing class LightningComponentUtil{
 		 * This function takes an object type and a set of fields for that object.
 		 * Returns a SOQL query that only queries fields the user has access to.
 		 */
-        Schema.DescribeSobjectResult describeObject = Schema.describeSObjects(new String[]{objectType})[0];
+        	Schema.DescribeSobjectResult describeObject = Schema.describeSObjects(new String[]{objectType})[0];
 		Map<String,Schema.SObjectField> fieldDescribeTokens = describeObject.fields.getMap();
         
 		String queryString = 'SELECT Id';
