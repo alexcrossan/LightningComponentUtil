@@ -3,19 +3,19 @@ public with sharing class LightningComponentUtil{
 	 * A collection of generic functions regularly used across Lightning Components
 	 */
 	
-	public static Map<String,Boolan> checkObjectAccess(String objectName, Set<String> fieldNameSet){
+	public static Map<String,Boolean> checkObjectAccess(String objectName, Set<String> fieldNameSet){
 		/* Lightning Components do not check Object access before displaying records. 
 		 * This function checks that the current user has access to the record being displayed, and then checks the individual fields that are attempting to view.
 		 * Returns a map indicating field accessibility for the current user, or throws an error if they don't have access to the object.
 		*/
 		
 		Map<String,Boolean> fieldAccess = new Map<String,Boolean>();
-		SObjectType sObjectType = Schema.getGlobalDescribe().get(sobjectName);
+		SObjectType ObjectType = Schema.getGlobalDescribe().get(objectName);
 		
-		if(!sObjectType.getDescribe().isAccessible()){
+		if(!ObjectType.getDescribe().isAccessible()){
 			throw new System.NoAccessException();
 		} else{
-			fieldAccess = checkFieldAccess(objectType, fieldNameSet);
+			fieldAccess = checkFieldAccess(objectName, fieldNameSet);
 		}
 		
 		return fieldAccess;
