@@ -64,5 +64,19 @@ public with sharing class LightningComponentUtil{
 		return queryString;
 
 	}
+	
+	public static Boolean checkCreateAccess(String objectType){
+        /* Lightning Components do not check for Create permission when inserting records.
+         * This function checks that the user does have the 'Create' permission for the object being inserted.
+         * When using this, devs should check for access before inserting any records.
+        */
+        Boolean hasCreateAccess = false;
+        SObjectType sObjectType = Schema.getGlobalDescribe().get(objectType);
 
+        if(sObjectType.getDescribe().isCreateable()){
+            hasCreateAccess = true;
+        }
+
+        return hasCreateAccess;
+    	}
 }
