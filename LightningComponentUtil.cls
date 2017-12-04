@@ -3,6 +3,42 @@ public with sharing class LightningComponentUtil{
 	 * A collection of generic functions regularly used across Lightning Components
 	 */
 	
+
+	 public static Boolean checkAccess(String objectName){
+		/* This function checks that the current user has read access to the object.
+		 * Returns a boolean indicating read access for the current user.
+		*/		
+
+	 	return checkAccess(objectName, 'Read');
+
+	 }
+
+	public static Boolean checkAccess(String objectName, String accessLevel){
+		/* This function checks that the current user has the defined level of access to the object.
+		 * Returns a boolean indicating accessibility for the current user.
+		*/		
+
+		SObjectType objectType = Schema.getGlobalDescribe().get(objectName);
+
+		if(accessLevel=='Read'){
+			if(objectType.getDescribe().isAccessible()){
+				return True;
+			} else{
+				return False
+			}
+		}else if(accessLevel=='Create'){
+			if(objectType.getDescribe().isCreateable()){
+				return True;
+			} else{
+				return False
+			}
+		}
+
+		//TODO Extend for other types of access levels
+
+	}
+
+
 	public static Map<String,Boolean> checkObjectAccess(String objectName, Set<String> fieldNameSet){
 		/* Lightning Components do not check Object access before displaying records. 
 		 * This function checks that the current user has access to the record being displayed, and then checks the individual fields that are attempting to view.
@@ -78,5 +114,6 @@ public with sharing class LightningComponentUtil{
         }
 
         return hasCreateAccess;
-    	}
+    	
+    }
 }
